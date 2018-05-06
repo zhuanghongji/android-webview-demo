@@ -1,5 +1,6 @@
 package com.zhuanghongji.android.webview.demo;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -84,7 +85,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setupWebView() {
-        setupWebSettings();
+//        setupWebSettings();
         setupWebViewClient();
         setupWebChromeClient();
     }
@@ -278,7 +279,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                MLog.i(TAG, "页面开始加载 url = %s", url);
+                MLog.i(TAG, "页面开始加载 url = %s, favicon = %s", url, favicon);
             }
 
             @Override
@@ -367,11 +368,13 @@ public class MainActivity extends BaseActivity {
                 return super.shouldInterceptRequest(view, url);
             }
 
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 // 此方法添加于API21，调用于非UI线程
                 // 拦截资源请求并返回数据，返回null时WebView将继续加载资源
-                MLog.i(TAG, "shouldInterceptRequest request = %s", request);
+                MLog.i(TAG, "shouldInterceptRequest url = %s, method = %s, headers = %s",
+                        request.getUrl(), request.getMethod(), request.getRequestHeaders());
                 return super.shouldInterceptRequest(view, request);
             }
 
@@ -390,11 +393,13 @@ public class MainActivity extends BaseActivity {
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 // 拦截页面加载，返回 true 表示宿主 app 拦截并处理了该 url，否则返回 false 由当前 WebView 处理
                 // 此方法添加于 API24，不处理 POST 请求，可拦截处理子 frame 的非 http 请求
-                MLog.i(TAG, "shouldOverrideUrlLoading request = %s", request);
+                MLog.i(TAG, "shouldOverrideUrlLoading url = %s, method = %s, headers = %s",
+                        request.getUrl(), request.getMethod(), request.getRequestHeaders());
                 return super.shouldOverrideUrlLoading(view, request);
             }
         });
