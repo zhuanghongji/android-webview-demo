@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">android-webview-demo</string>
+    <string name="refresh">刷新</string>
+</resources>
