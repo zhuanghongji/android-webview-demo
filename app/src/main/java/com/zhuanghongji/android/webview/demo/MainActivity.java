@@ -53,7 +53,11 @@ public class MainActivity extends BaseActivity {
 
     private WebView mWebView;
 
+    private ImageView ivGoBack;
+    private ImageView ivGoForward;
+    private ImageView ivMenu;
     private ImageView ivHelp;
+    private ImageView ivApps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -286,6 +290,7 @@ public class MainActivity extends BaseActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 MLog.i(TAG, "页面完成加载 url = %s", url);
+                updateBottomButtonsState(url);
             }
 
             @Override
@@ -530,6 +535,31 @@ public class MainActivity extends BaseActivity {
                 builder.create().show();
             }
         });
+
+        ivGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mWebView.canGoBack()) {
+                    mWebView.goBack();
+                }
+            }
+        });
+
+        ivGoForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mWebView.canGoForward()) {
+                    mWebView.goForward();
+                }
+            }
+        });
+
+        ivApps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mWebView.loadUrl(DEFAULT_URL);
+            }
+        });
     }
 
     private void initView() {
@@ -537,6 +567,21 @@ public class MainActivity extends BaseActivity {
         mEditText = findViewById(R.id.edit_text);
         mProgressBar = findViewById(R.id.progress_bar);
         mWebView = findViewById(R.id.web_view);
+
+        ivGoBack = findViewById(R.id.iv_go_back);
+        ivGoForward = findViewById(R.id.iv_go_forward);
+        ivMenu = findViewById(R.id.iv_menu);
         ivHelp = findViewById(R.id.iv_help);
+        ivApps = findViewById(R.id.iv_apps);
+    }
+
+    /**
+     * 更新底部操作按钮的 enable 状态
+     * @param url 当前页面的 url
+     */
+    private void updateBottomButtonsState(String url) {
+        ivGoBack.setEnabled(mWebView.canGoBack());
+        ivGoForward.setEnabled(mWebView.canGoForward());
+        ivApps.setEnabled(!DEFAULT_URL.equals(url));
     }
 }
