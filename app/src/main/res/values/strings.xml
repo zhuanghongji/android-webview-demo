@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">android-webview-demo</string>
     <string name="refresh">刷新</string>
+    <string name="page_up">上翻一页</string>
+    <string name="page_down">下翻一页</string>
+    <string name="zoom_in">放大</string>
+    <string name="zoom_out">缩小</string>
+    <string name="page_top">滚到顶部</string>
+    <string name="page_bottom">滚到底部</string>
+    <string name="find_text">网页查找</string>
+    <string name="clear_cache">清除网页缓存</string>
+    <string name="set_network_available">通知 WebView 内核网络状态</string>
+    <string name="copy_back_forward_list">复制一份 BackForwardList</string>
+    <string name="clear_history">清除当前 WebView 访问的历史记录</string>
+    <string name="clear_form_data">清除自动完成填充的表单数据</string>
+    <string name="clear_ssl_preferences">清除 SSL 偏好</string>
+    <string name="document_has_images">查询文档中是否有图片</string>
+    <string name="request_focus_node_href">求最近轻点的 锚点/图像 元素的 URL</string>
+    <string name="request_image_ref">请求最近触摸的图像元素的 URL</string>
+    <string name="clear_client_cert_preferences">清除证书请求偏好，添加于 API 21</string>
+    <string name="set_web_contents_debugging_enabled">开启网页内容调试模式，添加于 API 19</string>
 </resources>

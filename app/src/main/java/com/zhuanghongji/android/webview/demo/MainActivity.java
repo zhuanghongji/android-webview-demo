@@ -41,7 +41,8 @@ public class MainActivity extends BaseActivity {
 
     public static final String TAG = "MainActivity";
 
-    private static final String DEFAULT_URL = "http://www.baidu.com/";
+//    private static final String DEFAULT_URL = "http://www.baidu.com/";
+    private static final String DEFAULT_URL = "file:///android_asset/Apps.html";
 
     private Context mContext;
 
@@ -58,6 +59,8 @@ public class MainActivity extends BaseActivity {
     private ImageView ivMenu;
     private ImageView ivHelp;
     private ImageView ivApps;
+
+    private MenuBottomSheetDialog.OnMenuClickListener mOnBottomMenuClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +86,24 @@ public class MainActivity extends BaseActivity {
             case R.id.action_refresh:
                 mWebView.reload();
                 break;
-
+            case R.id.action_page_up:
+                mWebView.pageUp(false);
+                break;
+            case R.id.action_page_down:
+                mWebView.pageDown(false);
+                break;
+            case R.id.action_page_top:
+                mWebView.pageUp(true);
+                break;
+            case R.id.action_page_bottom:
+                mWebView.pageDown(true);
+                break;
+            case R.id.action_zoom_in:
+                mWebView.zoomIn();
+                break;
+            case R.id.action_zoom_out:
+                mWebView.zoomOut();
+                break;
         }
         return true;
     }
@@ -522,20 +542,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initEvent() {
-        ivHelp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = mWebView.getUrl();
-                String originalUrl = mWebView.getOriginalUrl();
-                String message = "url = " + url + "\n\noriginalUrl = " + originalUrl;
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setTitle("当前网页信息")
-                        .setMessage(message)
-                        .setPositiveButton("确定", null);
-                builder.create().show();
-            }
-        });
-
         ivGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -554,12 +560,105 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        ivMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MenuBottomSheetDialog dialog = new MenuBottomSheetDialog(mContext);
+                dialog.setOnMenuClickListener(mOnBottomMenuClickListener);
+                dialog.show();
+            }
+        });
+
+        ivHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = mWebView.getUrl();
+                String originalUrl = mWebView.getOriginalUrl();
+                String message = "url = " + url + "\n\noriginalUrl = " + originalUrl;
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("当前网页信息")
+                        .setMessage(message)
+                        .setPositiveButton("确定", null);
+                builder.create().show();
+            }
+        });
+
         ivApps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mWebView.loadUrl(DEFAULT_URL);
             }
         });
+
+        mOnBottomMenuClickListener = new MenuBottomSheetDialog.OnMenuClickListener() {
+            @Override
+            public void onFindText(View view) {
+                MLog.i(TAG, "查找下一个匹配的字符串");
+            }
+
+            @Override
+            public void onClearCache(View view) {
+                mWebView.clearCache(false);
+            }
+
+            @Override
+            public void onNetworkAvailable(boolean available) {
+                mWebView.setNetworkAvailable(available);
+            }
+
+            @TargetApi(Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onDebugEnabled(boolean enable) {
+                WebView.setWebContentsDebuggingEnabled(enable);
+            }
+
+            @Override
+            public void onCopyBackForwardList(View v) {
+                mWebView.copyBackForwardList();
+            }
+
+            @Override
+            public void onClearHistory(View v) {
+                mWebView.clearHistory();
+            }
+
+            @Override
+            public void onClearFormData(View v) {
+                mWebView.clearFormData();
+            }
+
+            @Override
+            public void onDocumentHasImages(View v) {
+                // 查询结果将被发送到 msg.getTarget()
+                // 如果包含图片，msg.arg1 为 1，否则为 0
+                Message message = new Message();
+                mWebView.documentHasImages(message);
+                MLog.i(TAG, "查询文档中是否有图片 message = %s", message);
+            }
+
+            @Override
+            public void onRequestFocusNodeHref(View v) {
+                // 查询结果将被发送到msg.getTarget()
+                // msg.getData()中的url是锚点的href属性，title是锚点的文本，src是图像的src接
+                Message message = new Message();
+                mWebView.requestFocusNodeHref(message);
+                MLog.i(TAG, "请求最近轻点的 锚点/图像 元素的 URL message = %s", message);
+            }
+
+            @Override
+            public void onRequestImageHref(View v) {
+                // 查询结果将被发送到msg.getTarget()
+                // msg.getData()中的url是图像链接
+                Message message = new Message();
+                mWebView.requestImageRef(message);
+                MLog.i(TAG, "请求最近触摸的图像元素的 URL message = %s", message);
+            }
+
+            @Override
+            public void onClearClientCertPreferences(View v) {
+                // TODO
+            }
+        };
     }
 
     private void initView() {

@@ -4,4 +4,22 @@
     <item android:id="@+id/action_refresh"
         android:title="@string/refresh"
         app:showAsAction="never"/>
+    <item android:id="@+id/action_page_up"
+        android:title="@string/page_up"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_page_down"
+        android:title="@string/page_down"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_page_top"
+        android:title="@string/page_top"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_page_bottom"
+        android:title="@string/page_bottom"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_zoom_in"
+        android:title="@string/zoom_in"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_zoom_out"
+        android:title="@string/zoom_out"
+        app:showAsAction="never"/>
 </menu>
