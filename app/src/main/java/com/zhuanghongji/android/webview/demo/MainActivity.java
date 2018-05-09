@@ -1,5 +1,6 @@
 package com.zhuanghongji.android.webview.demo;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -50,6 +51,8 @@ public class MainActivity extends BaseActivity {
 
 //    private static final String DEFAULT_URL = "http://www.baidu.com/";
     private static final String DEFAULT_URL = "file:///android_asset/Apps.html";
+
+    public static final String JAVA_SCRIPT_NAME = "AndroidWebViewDemo";
 
     private Context mContext;
 
@@ -119,6 +122,15 @@ public class MainActivity extends BaseActivity {
 //        setupWebSettings();
         setupWebViewClient();
         setupWebChromeClient();
+
+        addJavascriptInterface();
+    }
+
+    @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
+    private void addJavascriptInterface() {
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.addJavascriptInterface(
+                new CustomJavascriptInterface(mContext.getApplicationContext()), JAVA_SCRIPT_NAME);
     }
 
     private void setupWebChromeClient() {
