@@ -2,6 +2,8 @@ package com.zhuanghongji.android.webview.demo;
 
 import android.app.Application;
 
+import com.zhuanghongji.android.webview.demo.helper.MLog;
+
 /**
  * Created by zhuanghongji on 2018/5/6.
  */

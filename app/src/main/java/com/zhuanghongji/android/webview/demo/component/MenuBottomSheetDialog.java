@@ -1,4 +1,4 @@
-package com.zhuanghongji.android.webview.demo;
+package com.zhuanghongji.android.webview.demo.component;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,8 +9,10 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.CompoundButton;
 
+import com.zhuanghongji.android.webview.demo.R;
+
 /**
- * Created by zhuanghongji on 2018/5/8.
+ * 底部弹出的 "功能测试" 菜单
  */
 
 public class MenuBottomSheetDialog extends BottomSheetDialog {
@@ -20,9 +22,6 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
     private Context mContext;
 
     private View mContentView;
-
-//    private TextView tvFindText;
-//    private TextView tvClearCache;
 
     // don't forget to set the OnMenuClickListener for this dialog
     private OnMenuClickListener mOnMenuClickListener;
@@ -49,6 +48,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 mOnMenuClickListener.onFindText(v);
+                dismiss();
             }
         });
 
@@ -56,6 +56,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 mOnMenuClickListener.onClearCache(v);
+                dismiss();
             }
         });
 
@@ -64,6 +65,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mOnMenuClickListener.onNetworkAvailable(isChecked);
+                dismiss();
             }
         });
 
@@ -72,6 +74,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mOnMenuClickListener.onDebugEnabled(isChecked);
+                dismiss();
             }
         });
 
@@ -79,6 +82,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 mOnMenuClickListener.onCopyBackForwardList(v);
+                dismiss();
             }
         });
 
@@ -86,6 +90,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 mOnMenuClickListener.onClearHistory(v);
+                dismiss();
             }
         });
 
@@ -93,6 +98,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 mOnMenuClickListener.onClearFormData(v);
+                dismiss();
             }
         });
 
@@ -100,6 +106,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 mOnMenuClickListener.onDocumentHasImages(v);
+                dismiss();
             }
         });
 
@@ -107,6 +114,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 mOnMenuClickListener.onRequestFocusNodeHref(v);
+                dismiss();
             }
         });
 
@@ -114,6 +122,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 mOnMenuClickListener.onRequestImageHref(v);
+                dismiss();
             }
         });
 
@@ -121,6 +130,7 @@ public class MenuBottomSheetDialog extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 mOnMenuClickListener.onClearClientCertPreferences(v);
+                dismiss();
             }
         });
     }

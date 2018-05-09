@@ -9,6 +9,7 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -31,12 +32,18 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.zhuanghongji.android.webview.demo.base.BaseActivity;
+import com.zhuanghongji.android.webview.demo.component.FindTextBar;
+import com.zhuanghongji.android.webview.demo.component.MenuBottomSheetDialog;
+import com.zhuanghongji.android.webview.demo.helper.MLog;
+import com.zhuanghongji.android.webview.demo.helper.Utils;
 
+/**
+ * WebView 相关 API 测试唯一页面
+ */
 public class MainActivity extends BaseActivity {
 
     public static final String TAG = "MainActivity";
@@ -48,7 +55,7 @@ public class MainActivity extends BaseActivity {
 
     private Toolbar mToolbar;
 
-    private EditText mEditText;
+    private FindTextBar mFindTextBar;
 
     private ProgressBar mProgressBar;
 
@@ -542,6 +549,31 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initEvent() {
+        mWebView.setFindListener(mFindTextBar.getFindListener());
+
+        mFindTextBar.setOnFindTextListener(new FindTextBar.OnFindTextListener() {
+            @Override
+            public void onCancel() {
+                mFindTextBar.setVisibility(View.GONE);
+                mWebView.clearMatches();
+            }
+
+            @Override
+            public void onTextChange(@NonNull String text) {
+                mWebView.findAllAsync(text);
+            }
+
+            @Override
+            public void onPreOne() {
+                mWebView.findNext(false);
+            }
+
+            @Override
+            public void onNextOne() {
+                mWebView.findNext(true);
+            }
+        });
+
         ivGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -594,6 +626,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onFindText(View view) {
                 MLog.i(TAG, "查找下一个匹配的字符串");
+                mFindTextBar.setVisibility(View.VISIBLE);
+                mFindTextBar.focus();
             }
 
             @Override
@@ -663,7 +697,7 @@ public class MainActivity extends BaseActivity {
 
     private void initView() {
         mToolbar = findViewById(R.id.toolbar);
-        mEditText = findViewById(R.id.edit_text);
+        mFindTextBar = findViewById(R.id.find_text_bar);
         mProgressBar = findViewById(R.id.progress_bar);
         mWebView = findViewById(R.id.web_view);
 

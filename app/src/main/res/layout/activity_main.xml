@@ -7,23 +7,26 @@
     android:orientation="vertical"
     tools:context="com.zhuanghongji.android.webview.demo.MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:titleTextColor="@color/white"
-        app:subtitleTextColor="@color/white">
-        <EditText
-            android:id="@+id/edit_text"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:hint="请输入网址.."
-            android:focusable="false"
-            android:visibility="gone"/>
-    </android.support.v7.widget.Toolbar>
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/white"
+            app:subtitleTextColor="@color/white">
+        </android.support.v7.widget.Toolbar>
+
+        <com.zhuanghongji.android.webview.demo.component.FindTextBar
+            android:id="@+id/find_text_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+    </FrameLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

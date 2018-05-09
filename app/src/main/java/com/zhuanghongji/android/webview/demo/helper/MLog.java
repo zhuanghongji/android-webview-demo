@@ -1,4 +1,4 @@
-package com.zhuanghongji.android.webview.demo;
+package com.zhuanghongji.android.webview.demo.helper;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,13 +9,14 @@ import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.zhuanghongji.android.webview.demo.BuildConfig;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 /**
- * Created by zhuanghongji on 2018/5/6.
+ * 封装了 Logger 的日志管理类
  */
 
 public class MLog {

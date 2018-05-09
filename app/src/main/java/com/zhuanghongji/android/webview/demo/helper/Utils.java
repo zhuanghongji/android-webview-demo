@@ -1,9 +1,9 @@
-package com.zhuanghongji.android.webview.demo;
+package com.zhuanghongji.android.webview.demo.helper;
 
 import android.content.Context;
 
 /**
- * Created by zhuanghongji on 2018/5/6.
+ * 工具类
  */
 
 public class Utils {
