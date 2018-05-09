@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>测试其余</title>
+
+        <script type="text/javascript">
+            function showAndroidToast(toast) {
+                AndroidWebViewDemo.showToast(toast);
+            }
+
+            function showAlert() {
+                alert('for test onJsAlert')
+            }
+
+            function showConfirm() {
+                confirm('for test onJsConfirm')
+            }
+
+            function showPrompt() {
+                prompt('for test onJsPrompt')
+            }
+        </script>
+    </head>
+
+    <input type="button"
+           value="测试 JavaScriptInterface: Say hello"
+           onClick="showAndroidToast('Hello Android!')" />
+
+    <br>
+    <input type="button"
+           value="测试 onJsAlert"
+           onClick="showAlert()" />
+
+    <br>
+    <input type="button"
+           value="测试 onJsConfirm"
+           onClick="showConfirm()" />
+
+    <br>
+    <input type="button"
+           value="测试 onJsPrompt"
+           onClick="showPrompt()" />
+
+    </body>
+</html>

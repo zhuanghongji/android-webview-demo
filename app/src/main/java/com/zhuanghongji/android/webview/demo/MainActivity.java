@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.net.http.SslError;
@@ -141,7 +142,8 @@ public class MainActivity extends BaseActivity {
                 // <video /> 控件在未播放时，会展示为一张海报图，HTML中可通过它的'poster'属性来指定。
                 // 如果未指定'poster'属性，则通过此方法提供一个默认的海报图。
                 MLog.i(TAG, "getDefaultVideoPoster");
-                return super.getDefaultVideoPoster();
+                return BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);
+//                return super.getDefaultVideoPoster();
             }
 
             @Override
