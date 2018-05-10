@@ -13,6 +13,7 @@ a relatively complete demo of Android WebView
 | -- | --
 | ![](./screenshots/3.gif) | ![](./screenshots/4.gif)
 
+推荐阅读：[android-webview-note](https://github.com/zhuanghongji/android-webview-note)
 
 ### TODO
 很多功能有待完善
