@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">android-webview-demo</string>
+    <string name="app_name">AWD</string>
     <string name="refresh">刷新</string>
     <string name="page_up">上翻一页</string>
     <string name="page_down">下翻一页</string>

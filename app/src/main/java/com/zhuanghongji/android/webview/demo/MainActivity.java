@@ -559,7 +559,7 @@ public class MainActivity extends BaseActivity {
 
     private void setupToolbar() {
         setSupportActionBar(mToolbar);
-        mToolbar.setNavigationIcon(R.mipmap.ic_launcher_round);
+//        mToolbar.setNavigationIcon(R.mipmap.ic_launcher_round);
     }
 
     private void initEvent() {
