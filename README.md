@@ -1,19 +1,15 @@
 # android-webview-demo
-a relatively complete demo of Android WebView
 
-通过实现一个简单的浏览器演示了 WebView 的基本使用方法。
+a demo which demonstrates the basic usage of Android WebView.
 
-基本效果如下：
+通过实现一个简单的浏览器来演示 WebView 的基本用法。
 
-| 百度首页、前进、后退 | 刷新、上一页、下一页、滚到顶部、滚到底部
-| -- | --
-| ![](./screenshots/1.gif) | ![](./screenshots/2.gif)
 
-| 网页查找功能 | 其它 API
-| -- | --
-| ![](./screenshots/3.gif) | ![](./screenshots/4.gif)
+## 截图
 
-推荐阅读：[android-webview-note](https://github.com/zhuanghongji/android-webview-note)
 
-### TODO
-很多功能有待完善
+| 网页、前进、后退 | 刷新、上一页、下一页、滚到顶部、滚到底部 | 查找网页内容 | 其它 
+| - | - | - | -
+| ![](./screenshots/1.gif) | ![](./screenshots/2.gif) | ![](./screenshots/3.gif) | ![](./screenshots/4.gif)
+
+
